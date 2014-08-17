@@ -5,6 +5,14 @@ Safari extension that highlight code blocks on Apple Developer Library.
 Uses the excellent [Prism][] javascript lib. Forget about that hard to
 read docs :)
 
+Before:
+
+![Without highlight extension](/screenshots/before.png?raw=true)
+
+After:
+
+![With highlight extension](/screenhots/after.png?raw=true)
+
 Installing
 ----------
 

@@ -1,0 +1,16 @@
+/**
+ * Reset style from developer.apple.com
+ */
+.codesample span {
+    float: none !important;
+    margin-right: 0 !important;
+}
+
+/**
+ * Disable prism overflow of code blocks
+ */
+pre[class*="language-"] > code[data-language] {
+    max-height: none;
+    overflow-y: auto;
+    overflow-x: auto;
+}

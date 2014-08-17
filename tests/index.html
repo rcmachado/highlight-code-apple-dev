@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Code Highlight for Apple Documentation - Unit tests</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.14.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+    <!--
+      Code sample adapted from:
+      https://developer.apple.com/library/ios/documentation/Security/Conceptual/keychainServConcepts/03tasks/tasks.html#//apple_ref/doc/uid/TP30000897-CH205-TP9
+    -->
+    <p class="codesample clear"><strong class="caption_number">Listing 3-2</strong>&nbsp;&nbsp;Creating a keychain item with custom attributes</p>
+    <div id="correct-code-block" class="codesample clear">
+      <table><tbody>
+        <tr><td scope="row"><pre>#import &lt;Foundation/Foundation.h&gt;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>#include &lt;Security/Security.h&gt;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>SecAccessRef createAccess(NSString *accessLabel)<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>{<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    OSStatus err;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    SecAccessRef access=nil;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    NSArray *trustedApplications=nil;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    //Make an exception list of trusted applications; that is,<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    // applications that are allowed to access the item without<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    // requiring user confirmation:<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    SecTrustedApplicationRef myself, someOther;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    //Create trusted application references; see SecTrustedApplications.h:<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    err = SecTrustedApplicationCreateFromPath(NULL, &amp;myself);<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    err = err ?: SecTrustedApplicationCreateFromPath("/Applications/Mail.app",<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>                                                            &amp;someOther);<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    if (err == noErr) {<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>        trustedApplications = [NSArray arrayWithObjects:(__bridge_transfer id)myself,<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>                                                    (__bridge_transfer id)someOther, nil];<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    }<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    //Create an access object:<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    err = err ?: SecAccessCreate((__bridge CFStringRef)accessLabel,<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>                            (__bridge CFArrayRef)trustedApplications, &amp;access);<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    if (err) return nil;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    return access;<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>}<span></span></pre></td></tr>
+        <tr><td scope="row"><pre> <span></span></pre></td></tr>
+        <tr><td scope="row"><pre>int tryAdd(void)<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>{<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>         //Add an example password to the keychain:<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>    return addInternetPassword(@"sample password", @"sample account",<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>            @"samplehost.apple.com", @"sampleName", @"cgi-bin/bogus/testpath",<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>                                                kSecProtocolTypeHTTP, 8080);<span></span></pre></td></tr>
+        <tr><td scope="row"><pre>}<span></span></pre></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/qunit/qunit-1.14.0.js"></script>
+  <script src="../highlight-code-apple-dev.safariextension/js/functions.js"></script>
+  <script src="tests.js"></script>
+</body>
+</html>

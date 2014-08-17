@@ -11,7 +11,7 @@ Before:
 
 After:
 
-![With highlight extension](/screenhots/after.png?raw=true)
+![With highlight extension](/screenshots/after.png?raw=true)
 
 Installing
 ----------
